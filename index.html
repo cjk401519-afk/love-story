@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Love Story 💕</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --pink-100: #fce4ec;
+      --pink-200: #f8bbd0;
+      --pink-300: #f48fb1;
+      --pink-400: #f06292;
+      --pink-500: #ec407a;
+      --rose-400: #fb7185;
+      --rose-500: #f43f5e;
+      --purple-300: #d8b4fe;
+      --purple-400: #c084fc;
+      --purple-500: #a855f7;
+      --text-primary: #4a2040;
+      --text-secondary: #7c5070;
+      --glass-bg: rgba(255, 255, 255, 0.55);
+      --glass-border: rgba(255, 255, 255, 0.4);
+    }
+
+    body {
+      font-family: 'Noto Sans SC', sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 25%, #ede7f6 50%, #fce4ec 75%, #fff0f5 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      color: var(--text-primary);
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ========== 浮动爱心背景 ========== */
+    .floating-hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .floating-hearts .heart {
+      position: absolute;
+      font-size: 1.2rem;
+      opacity: 0.15;
+      animation: floatUp linear infinite;
+    }
+    @keyframes floatUp {
+      0% { transform: translateY(100vh) rotate(0deg) scale(0.5); opacity: 0; }
+      10% { opacity: 0.15; }
+      90% { opacity: 0.15; }
+      100% { transform: translateY(-10vh) rotate(360deg) scale(1); opacity: 0; }
+    }
+
+    /* ========== 通用容器 ========== */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; position: relative; z-index: 1; }
+
+    /* ========== 顶部 Hero ========== */
+    .hero {
+      text-align: center;
+      padding: 5rem 0 3rem;
+    }
+    .hero-title {
+      font-family: 'Dancing Script', cursive;
+      font-size: 3.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--pink-500), var(--purple-500));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+      animation: fadeInDown 1s ease;
+    }
+    .hero-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      font-weight: 300;
+      letter-spacing: 0.1em;
+      animation: fadeInDown 1s ease 0.2s both;
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ========== 玻璃态卡片 ========== */
+    .glass-card {
+      background: var(--glass-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1.5rem;
+      box-shadow: 0 8px 32px rgba(236, 64, 122, 0.08);
+      padding: 2.5rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .glass-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(236, 64, 122, 0.15);
+    }
+
+    /* ========== 纪念日倒计时 ========== */
+    .countdown-section {
+      margin-bottom: 3rem;
+      animation: fadeInUp 1s ease 0.4s both;
+    }
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .countdown-grid {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .countdown-item {
+      text-align: center;
+      min-width: 90px;
+    }
+    .countdown-number {
+      font-size: 3rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--pink-500), var(--purple-400));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1.1;
+    }
+    .countdown-label {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 0.25rem;
+      font-weight: 400;
+    }
+    .anniversary-date {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+    }
+    .anniversary-date span {
+      font-weight: 600;
+      color: var(--pink-500);
+    }
+    .today-banner {
+      text-align: center;
+      margin-top: 1.2rem;
+      padding: 0.8rem 1.5rem;
+      background: linear-gradient(135deg, var(--pink-500), var(--rose-500), var(--purple-400));
+      border-radius: 1rem;
+      color: #fff;
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      animation: celebratePulse 1.5s ease infinite;
+      display: none;
+    }
+    .today-banner.show { display: block; }
+    @keyframes celebratePulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(244,63,94,0.4); }
+      50% { transform: scale(1.03); box-shadow: 0 0 20px 8px rgba(244,63,94,0.15); }
+    }
+    .total-days {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: var(--text-secondary);
+    }
+    .total-days .highlight {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--rose-500);
+    }
+
+    /* ========== 每日情话 ========== */
+    .love-quote-section {
+      margin-bottom: 3rem;
+      animation: fadeInUp 1s ease 0.6s both;
+    }
+    .quote-card {
+      position: relative;
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(135deg, rgba(252,228,236,0.6), rgba(243,229,245,0.6));
+      border-radius: 1rem;
+      border: 1px dashed var(--pink-300);
+    }
+    .quote-mark {
+      font-size: 3rem;
+      line-height: 1;
+      color: var(--pink-300);
+      font-family: 'Dancing Script', cursive;
+    }
+    .quote-text {
+      font-size: 1.2rem;
+      color: var(--text-primary);
+      line-height: 1.8;
+      margin: 0.5rem 0 1rem;
+      font-weight: 400;
+      min-height: 3.6rem;
+    }
+    .quote-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.5rem;
+      background: linear-gradient(135deg, var(--pink-400), var(--purple-400));
+      color: white;
+      border: none;
+      border-radius: 2rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Noto Sans SC', sans-serif;
+    }
+    .quote-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 20px rgba(236, 64, 122, 0.3);
+    }
+    .quote-btn:active { transform: scale(0.98); }
+
+    /* ========== 大事纪时间轴 ========== */
+    .timeline-section {
+      margin-bottom: 4rem;
+      animation: fadeInUp 1s ease 0.8s both;
+    }
+    .timeline {
+      position: relative;
+      padding: 1rem 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--pink-300), var(--purple-300));
+      transform: translateX(-50%);
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: flex-start;
+    }
+    .timeline-item:nth-child(odd) {
+      flex-direction: row;
+      padding-right: calc(50% + 2rem);
+      text-align: right;
+    }
+    .timeline-item:nth-child(even) {
+      flex-direction: row-reverse;
+      padding-left: calc(50% + 2rem);
+      text-align: left;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      top: 0.5rem;
+      width: 14px;
+      height: 14px;
+      background: linear-gradient(135deg, var(--pink-400), var(--purple-400));
+      border: 3px solid white;
+      border-radius: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 0 12px rgba(236, 64, 122, 0.3);
+      z-index: 2;
+    }
+    .timeline-content {
+      background: var(--glass-bg);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border);
+      border-radius: 1rem;
+      padding: 1.2rem 1.5rem;
+      box-shadow: 0 4px 16px rgba(236, 64, 122, 0.06);
+      transition: all 0.3s ease;
+      width: 100%;
+    }
+    .timeline-content:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(236, 64, 122, 0.12);
+    }
+    .timeline-date {
+      font-size: 0.8rem;
+      color: var(--pink-500);
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    .timeline-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.2rem;
+    }
+    .timeline-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .timeline-delete {
+      position: absolute;
+      top: 0.3rem;
+      background: none;
+      border: none;
+      color: var(--pink-300);
+      cursor: pointer;
+      font-size: 0.8rem;
+      opacity: 0;
+      transition: opacity 0.2s;
+      padding: 0.2rem 0.4rem;
+      border-radius: 0.3rem;
+    }
+    .timeline-content:hover .timeline-delete { opacity: 1; }
+    .timeline-delete:hover { color: var(--rose-500); background: rgba(244,63,94,0.1); }
+
+    /* 添加按钮 */
+    .add-event-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 1rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 2px dashed var(--pink-300);
+      border-radius: 1rem;
+      color: var(--pink-400);
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Noto Sans SC', sans-serif;
+    }
+    .add-event-btn:hover {
+      background: rgba(252,228,236,0.5);
+      border-color: var(--pink-400);
+      color: var(--pink-500);
+      transform: translateY(-2px);
+    }
+
+    /* ========== 弹窗 ========== */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+      animation: fadeIn 0.3s ease;
+    }
+    .modal-overlay.active { display: flex; }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .modal {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 2.5rem;
+      width: 90%;
+      max-width: 440px;
+      box-shadow: 0 20px 60px rgba(236, 64, 122, 0.15);
+      animation: slideUp 0.3s ease;
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .modal h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, var(--pink-500), var(--purple-500));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 0.4rem;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1.5px solid #e8d5e0;
+      border-radius: 0.75rem;
+      font-size: 0.95rem;
+      font-family: 'Noto Sans SC', sans-serif;
+      color: var(--text-primary);
+      transition: all 0.2s ease;
+      background: #fdf6f9;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--pink-400);
+      box-shadow: 0 0 0 3px rgba(240, 98, 146, 0.15);
+      background: white;
+    }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    .modal-actions {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 1.5rem;
+    }
+    .btn-cancel {
+      flex: 1;
+      padding: 0.7rem;
+      border: 1.5px solid #e0d0d8;
+      border-radius: 0.75rem;
+      background: white;
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: 'Noto Sans SC', sans-serif;
+    }
+    .btn-cancel:hover { background: #f8f0f4; }
+    .btn-confirm {
+      flex: 1;
+      padding: 0.7rem;
+      border: none;
+      border-radius: 0.75rem;
+      background: linear-gradient(135deg, var(--pink-400), var(--purple-400));
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: 'Noto Sans SC', sans-serif;
+    }
+    .btn-confirm:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(236, 64, 122, 0.3);
+    }
+
+    /* ========== 照片墙 ========== */
+    .photo-wall-section {
+      margin-bottom: 4rem;
+      animation: fadeInUp 1s ease 1s both;
+    }
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .photo-item {
+      position: relative;
+      border-radius: 1rem;
+      overflow: hidden;
+      background: linear-gradient(135deg, rgba(252,228,236,0.4), rgba(243,229,245,0.4));
+      border: 1px solid var(--glass-border);
+      box-shadow: 0 4px 12px rgba(236, 64, 122, 0.06);
+      cursor: pointer;
+      transition: all 0.3s ease;
+      aspect-ratio: 1;
+    }
+    .photo-item:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 8px 24px rgba(236, 64, 122, 0.15);
+    }
+    .photo-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+    .photo-item:hover img {
+      transform: scale(1.05);
+    }
+    .photo-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 2rem 0.8rem 0.6rem;
+      background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+      color: white;
+      font-size: 0.75rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      line-height: 1.3;
+    }
+    .photo-item:hover .photo-caption { opacity: 1; }
+    .photo-delete-btn {
+      position: absolute;
+      top: 0.4rem;
+      right: 0.4rem;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.85);
+      border: none;
+      color: var(--rose-500);
+      font-size: 0.7rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(4px);
+    }
+    .photo-item:hover .photo-delete-btn { opacity: 1; }
+    .photo-delete-btn:hover { background: var(--rose-500); color: white; transform: scale(1.1); }
+
+    .upload-area {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      width: 100%;
+      padding: 1rem;
+      background: var(--glass-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 2px dashed var(--pink-300);
+      border-radius: 1rem;
+      color: var(--pink-400);
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-family: 'Noto Sans SC', sans-serif;
+    }
+    .upload-area:hover {
+      background: rgba(252,228,236,0.5);
+      border-color: var(--pink-400);
+      color: var(--pink-500);
+      transform: translateY(-2px);
+    }
+
+    /* 图片预览弹窗 */
+    .preview-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 200;
+      justify-content: center;
+      align-items: center;
+      cursor: zoom-out;
+      animation: fadeIn 0.3s ease;
+    }
+    .preview-overlay.active { display: flex; }
+    .preview-overlay img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 1rem;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      animation: zoomIn 0.3s ease;
+    }
+    .preview-caption-bar {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(10px);
+      padding: 0.6rem 1.5rem;
+      border-radius: 2rem;
+      font-size: 0.9rem;
+      color: var(--text-primary);
+      max-width: 80vw;
+      text-align: center;
+    }
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* ========== Footer ========== */
+    .footer {
+      text-align: center;
+      padding: 2rem 0 3rem;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      opacity: 0.7;
+    }
+
+    /* ========== 空状态 ========== */
+    .empty-state {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+    .empty-state .emoji { font-size: 2.5rem; margin-bottom: 0.5rem; }
+
+    /* ========== 响应式 ========== */
+    @media (max-width: 640px) {
+      .hero-title { font-size: 2.5rem; }
+      .countdown-number { font-size: 2.2rem; }
+      .countdown-grid { gap: 1rem; }
+      .glass-card { padding: 1.5rem; }
+
+      .timeline::before { left: 1.5rem; }
+      .timeline-dot { left: 1.5rem; }
+      .timeline-item:nth-child(odd),
+      .timeline-item:nth-child(even) {
+        padding-left: 3.5rem;
+        padding-right: 0;
+        text-align: left;
+        flex-direction: row;
+      }
+
+      .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 浮动爱心背景 -->
+<div class="floating-hearts" id="floatingHearts"></div>
+
+<!-- Hero -->
+<div class="container">
+  <header class="hero">
+    <h1 class="hero-title">Our Love Story</h1>
+    <p class="hero-subtitle">每一天，都是爱你的好日子 ✨</p>
+  </header>
+
+  <!-- 纪念日倒计时 -->
+  <section class="countdown-section">
+    <div class="glass-card">
+      <h2 class="section-title">💕 纪念日倒计时</h2>
+      <div class="countdown-grid">
+        <div class="countdown-item">
+          <div class="countdown-number" id="days">--</div>
+          <div class="countdown-label">天</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-number" id="hours">--</div>
+          <div class="countdown-label">时</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-number" id="minutes">--</div>
+          <div class="countdown-label">分</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-number" id="seconds">--</div>
+          <div class="countdown-label">秒</div>
+        </div>
+      </div>
+      <div id="todayBanner" class="today-banner">🎉 就是今天！纪念日快乐！💕</div>
+      <div class="anniversary-date">
+        我们的纪念日：<span>每年 7 月 9 日</span>
+      </div>
+      <div class="total-days">
+        我们已经一起走过了 <span class="highlight" id="totalDays">--</span> 天
+      </div>
+    </div>
+  </section>
+
+  <!-- 每日情话 -->
+  <section class="love-quote-section">
+    <div class="glass-card">
+      <h2 class="section-title">💌 今日情话</h2>
+      <div class="quote-card">
+        <div class="quote-mark">"</div>
+        <p class="quote-text" id="quoteText">加载中...</p>
+        <button class="quote-btn" onclick="nextQuote()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+          换一句
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 大事纪时间轴 -->
+  <section class="timeline-section">
+    <div class="glass-card">
+      <h2 class="section-title">📖 我们的大事纪</h2>
+      <div class="timeline" id="timeline">
+        <!-- 动态生成 -->
+      </div>
+      <button class="add-event-btn" onclick="openModal()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        添加我们的大事纪
+      </button>
+    </div>
+  </section>
+
+  <!-- 照片墙 -->
+  <section class="photo-wall-section">
+    <div class="glass-card">
+      <h2 class="section-title">📸 我们的照片墙</h2>
+      <div class="photo-grid" id="photoGrid">
+        <!-- 动态生成 -->
+      </div>
+      <label class="upload-area" for="photoInput">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        上传你们的照片
+      </label>
+      <input type="file" id="photoInput" accept="image/*" multiple style="display:none" onchange="handlePhotoUpload(event)" />
+    </div>
+  </section>
+
+  <footer class="footer">
+    Made with 💗 for you
+  </footer>
+</div>
+
+<!-- 弹窗 -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal">
+    <h3>✍️ 添加大事纪</h3>
+    <div class="form-group">
+      <label for="eventDate">日期</label>
+      <input type="date" id="eventDate" />
+    </div>
+    <div class="form-group">
+      <label for="eventTitle">标题</label>
+      <input type="text" id="eventTitle" placeholder="例如：第一次见面" />
+    </div>
+    <div class="form-group">
+      <label for="eventDesc">描述（选填）</label>
+      <textarea id="eventDesc" placeholder="记录这一天的美好回忆..."></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-cancel" onclick="closeModal()">取消</button>
+      <button class="btn-confirm" onclick="addEvent()">保存 💕</button>
+    </div>
+  </div>
+</div>
+
+<!-- 照片预览弹窗 -->
+<div class="preview-overlay" id="previewOverlay" onclick="closePreview()">
+  <img id="previewImg" src="" alt="预览" />
+  <div class="preview-caption-bar" id="previewCaption"></div>
+</div>
+
+<script>
+  // ========== 纪念日倒计时 ==========
+  const ANNIVERSARY_MONTH = 7;
+  const ANNIVERSARY_DAY = 9;
+
+  // 获取在一起的天数起点
+  const START_YEAR = 2025;
+  const START_MONTH = 7;
+  const START_DAY = 9;
+
+  // 获取北京时间各分量（无论浏览器在哪个时区都正确）
+  function getBeijingParts() {
+    const parts = {};
+    new Intl.DateTimeFormat('en-US', {
+      timeZone: 'Asia/Shanghai',
+      year: 'numeric', month: 'numeric', day: 'numeric',
+      hour: 'numeric', minute: 'numeric', second: 'numeric',
+      hour12: false
+    }).formatToParts(new Date()).forEach(p => {
+      if (p.type !== 'literal') parts[p.type] = parseInt(p.value);
+    });
+    return parts;
+  }
+
+  // 将北京时间的年月日时分秒转为 UTC 毫秒时间戳
+  function beijingToUtcMs(year, month, day, hour, minute, second) {
+    // month 是 1-indexed；Date.UTC 的 month 是 0-indexed
+    return Date.UTC(year, month - 1, day, hour, minute, second) - 8 * 3600000;
+  }
+
+  function updateCountdown() {
+    const bp = getBeijingParts();
+    const nowMs = Date.now();
+
+    // 判断是否就是今天（北京时间 7 月 9 日）
+    const banner = document.getElementById('todayBanner');
+    if (bp.month === ANNIVERSARY_MONTH && bp.day === ANNIVERSARY_DAY) {
+      banner.classList.add('show');
+      // 今天就是纪念日，倒计时归零
+      document.getElementById('days').textContent = '🎉';
+      document.getElementById('hours').textContent = '00';
+      document.getElementById('minutes').textContent = '00';
+      document.getElementById('seconds').textContent = '00';
+    } else {
+      banner.classList.remove('show');
+      // 计算下一个纪念日的 UTC 时间戳（北京时间当天 00:00:00）
+      let targetYear = bp.year;
+      let targetMs = beijingToUtcMs(targetYear, ANNIVERSARY_MONTH, ANNIVERSARY_DAY, 0, 0, 0);
+      if (nowMs >= targetMs) {
+        targetMs = beijingToUtcMs(targetYear + 1, ANNIVERSARY_MONTH, ANNIVERSARY_DAY, 0, 0, 0);
+      }
+      const diff = targetMs - nowMs;
+
+      const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('days').textContent = d;
+      document.getElementById('hours').textContent = String(h).padStart(2, '0');
+      document.getElementById('minutes').textContent = String(m).padStart(2, '0');
+      document.getElementById('seconds').textContent = String(s).padStart(2, '0');
+    }
+
+    // 总天数（北京时间）
+    const startMs = beijingToUtcMs(START_YEAR, START_MONTH, START_DAY, 0, 0, 0);
+    const todayStartMs = beijingToUtcMs(bp.year, bp.month, bp.day, 0, 0, 0);
+    const totalDays = Math.floor((todayStartMs - startMs) / (1000 * 60 * 60 * 24));
+    document.getElementById('totalDays').textContent = totalDays >= 0 ? totalDays : '--';
+  }
+
+  setInterval(updateCountdown, 1000);
+  updateCountdown();
+
+  // ========== 每日情话 ==========
+  const loveQuotes = [
+    "你是我见过最好看的人，没有之一。",
+    "想你的时候，风都是甜的。",
+    "你在身边的时候，你就是全世界；你不在身边的时候，全世界都是你。",
+    "我想和你一起慢慢变老，然后告诉孙子孙女，奶奶当年有多难追。",
+    "遇见你之前，我没想过结婚；遇见你之后，我没想过别人。",
+    "我这一生遇到过很多美好的东西，但都不及遇见你。",
+    "你是我所有的少女心事，也是我未来的每一天。",
+    "全世界都在催着我长大，只有你让我做回了小孩。",
+    "我想要的很简单：时光还在，你还在。",
+    "我喜欢你，像风走了八千里，不问归期。",
+    "春风十里不如你，夏日炎炎不如你，秋风落叶不如你，冬雪皑皑不如你。",
+    "你是我平淡生活里的刺眼星光。",
+    "我希望有一天，我能用最美的笑容，告诉你我有多爱你。",
+    "和你在一起，时间好像变慢了，慢到我可以好好看看你的眼睛。",
+    "你是年少的欢喜，也是余生的甜蜜。",
+    "我这一生，只愿为你一个人心动。",
+    "世界那么大，偏偏喜欢你，这不是巧合，是命中注定。",
+    "我想陪你走过四季，看遍世间所有美好的风景。",
+    "你是我所有勇气的来源，也是我所有温柔的归处。",
+    "你的名字，是我听过最短的情诗。",
+    "不管什么时候看到你，我的心都会怦怦跳。",
+    "你笑起来的样子，是我见过最美的风景。",
+    "我不要你觉得我好，我要你觉得没我不行。",
+    "你就像一杯温水，不烫嘴，却暖了心。",
+    "谢谢你出现在我的生命里，让我知道什么是幸福。",
+    "我喜欢你，认真且怂，从一而终。",
+    "你是我见过最好的礼物，时间送给我的。",
+    "你不用刻意改变什么，因为你现在的样子，就是我最喜欢的样子。",
+    "余生很长，我只想和你走。",
+    "你是我藏在云层里的月亮，也是我捧在手心里的光。"
+  ];
+
+  let lastQuoteIndex = -1;
+  function nextQuote() {
+    let idx;
+    do {
+      idx = Math.floor(Math.random() * loveQuotes.length);
+    } while (idx === lastQuoteIndex && loveQuotes.length > 1);
+    lastQuoteIndex = idx;
+
+    const el = document.getElementById('quoteText');
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(10px)';
+    setTimeout(() => {
+      el.textContent = loveQuotes[idx];
+      el.style.transition = 'all 0.4s ease';
+      el.style.opacity = '1';
+      el.style.transform = 'translateY(0)';
+    }, 200);
+  }
+
+  // 根据日期生成"每日一句"（同一天看是同一条，北京时间）
+  function dailyQuote() {
+    const bp = getBeijingParts();
+    const dayIndex = (bp.year * 366 + bp.month * 31 + bp.day) % loveQuotes.length;
+    document.getElementById('quoteText').textContent = loveQuotes[dayIndex];
+    lastQuoteIndex = dayIndex;
+  }
+  dailyQuote();
+
+  // ========== 大事纪时间轴 ==========
+  const STORAGE_KEY = 'love_timeline_events';
+
+  function loadEvents() {
+    const data = localStorage.getItem(STORAGE_KEY);
+    if (data) return JSON.parse(data);
+    // 默认一条
+    return [{
+      id: Date.now(),
+      date: '2025-07-09',
+      title: '我们在一起的第一天',
+      desc: '一切美好的开始 💕'
+    }];
+  }
+
+  function saveEvents(events) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(events));
+  }
+
+  function renderTimeline() {
+    const events = loadEvents();
+    const container = document.getElementById('timeline');
+
+    if (events.length === 0) {
+      container.innerHTML = `
+        <div class="empty-state">
+          <div class="emoji">📝</div>
+          <p>还没有添加大事纪哦，快来记录你们的美好时光吧！</p>
+        </div>`;
+      return;
+    }
+
+    // 按日期排序
+    events.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    container.innerHTML = events.map((ev, index) => {
+      const dateObj = new Date(ev.date);
+      const dateStr = `${dateObj.getFullYear()}年${dateObj.getMonth()+1}月${dateObj.getDate()}日`;
+      return `
+        <div class="timeline-item" style="animation: fadeInUp 0.5s ease ${index * 0.1}s both;">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <button class="timeline-delete" onclick="deleteEvent(${ev.id})" title="删除">✕</button>
+            <div class="timeline-date">${dateStr}</div>
+            <div class="timeline-title">${escapeHtml(ev.title)}</div>
+            ${ev.desc ? `<div class="timeline-desc">${escapeHtml(ev.desc)}</div>` : ''}
+          </div>
+        </div>`;
+    }).join('');
+  }
+
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  function openModal() {
+    document.getElementById('modalOverlay').classList.add('active');
+    document.getElementById('eventDate').value = '';
+    document.getElementById('eventTitle').value = '';
+    document.getElementById('eventDesc').value = '';
+    document.getElementById('eventDate').focus();
+  }
+
+  function closeModal() {
+    document.getElementById('modalOverlay').classList.remove('active');
+  }
+
+  function addEvent() {
+    const date = document.getElementById('eventDate').value;
+    const title = document.getElementById('eventTitle').value.trim();
+    const desc = document.getElementById('eventDesc').value.trim();
+
+    if (!date) { alert('请选择日期 😊'); return; }
+    if (!title) { alert('请填写标题 😊'); return; }
+
+    const events = loadEvents();
+    events.push({
+      id: Date.now(),
+      date,
+      title,
+      desc
+    });
+    saveEvents(events);
+    renderTimeline();
+    closeModal();
+  }
+
+  function deleteEvent(id) {
+    if (!confirm('确定要删除这条大事纪吗？')) return;
+    const events = loadEvents().filter(ev => ev.id !== id);
+    saveEvents(events);
+    renderTimeline();
+  }
+
+  // 点击遮罩关闭弹窗
+  document.getElementById('modalOverlay').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+  });
+
+  // ESC 关闭弹窗
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // 初始化
+  renderTimeline();
+
+  // ========== 浮动爱心 ==========
+  function createHearts() {
+    const container = document.getElementById('floatingHearts');
+    const hearts = ['💕', '💗', '💖', '❤️', '🩷', '🤍', '✨', '🌸'];
+    for (let i = 0; i < 15; i++) {
+      const heart = document.createElement('span');
+      heart.className = 'heart';
+      heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+      heart.style.left = Math.random() * 100 + '%';
+      heart.style.animationDuration = (8 + Math.random() * 12) + 's';
+      heart.style.animationDelay = Math.random() * 15 + 's';
+      heart.style.fontSize = (0.8 + Math.random() * 0.8) + 'rem';
+      container.appendChild(heart);
+    }
+  }
+  createHearts();
+
+  // ========== 照片墙 ==========
+  const PHOTO_KEY = 'love_photo_wall';
+
+  const DEFAULT_PHOTOS = [
+    { id: 'default_1', src: 'https://www.coze.cn/s/IK5xkaOUXKg/', caption: '我们的照片' },
+    { id: 'default_2', src: 'https://www.coze.cn/s/Jaq3CJbPqr0/', caption: '甜蜜瞬间' },
+    { id: 'default_3', src: 'https://www.coze.cn/s/IQJbDNy_rEA/', caption: '美好回忆' },
+    { id: 'default_4', src: 'https://www.coze.cn/s/I5Ojv0F0BKQ/', caption: '在一起的时光' },
+    { id: 'default_5', src: 'https://www.coze.cn/s/JFYqXYM0-kQ/', caption: '幸福日常' },
+    { id: 'default_6', src: 'https://www.coze.cn/s/H2RKilDtTuM/', caption: '最爱的你' },
+    { id: 'default_7', src: 'https://www.coze.cn/s/JAZb5iIqE3c/', caption: '永远在一起' },
+    { id: 'default_8', src: 'https://www.coze.cn/s/izlnui3UIFc/', caption: '心动时刻' },
+    { id: 'default_9', src: 'https://www.coze.cn/s/iVEPEex4dA0/', caption: '一起走过的路' },
+    { id: 'default_10', src: 'https://www.coze.cn/s/ihJi6bN32vg/', caption: '你的笑容' },
+    { id: 'default_11', src: 'https://www.coze.cn/s/iMb5jNKXEJg/', caption: '温柔的你' },
+    { id: 'default_12', src: 'https://www.coze.cn/s/iWebNBllXPQ/', caption: '手牵手的日常' },
+    { id: 'default_13', src: 'https://www.coze.cn/s/i86UUzU_2QY/', caption: '每一个拥抱' },
+    { id: 'default_14', src: 'https://www.coze.cn/s/iejQiA3hMqw/', caption: '最美的风景是你' },
+    { id: 'default_15', src: 'https://www.coze.cn/s/iurlo8ePxKM/', caption: '眼里只有你' },
+    { id: 'default_16', src: 'https://www.coze.cn/s/iexnfGe0cec/', caption: '和你在一起的每一天' },
+    { id: 'default_17', src: 'https://www.coze.cn/s/isBNn22WXDU/', caption: '爱你如初' }
+  ];
+
+  function loadPhotos() {
+    const data = localStorage.getItem(PHOTO_KEY);
+    if (data) return JSON.parse(data);
+    return DEFAULT_PHOTOS;
+  }
+
+  function savePhotos(photos) {
+    try {
+      localStorage.setItem(PHOTO_KEY, JSON.stringify(photos));
+    } catch(e) {
+      alert('存储空间不足啦，可以删除一些照片再上传哦～');
+    }
+  }
+
+  function renderPhotos() {
+    const photos = loadPhotos();
+    const grid = document.getElementById('photoGrid');
+
+    if (photos.length === 0) {
+      grid.innerHTML = `
+        <div class="empty-state" style="grid-column: 1/-1;">
+          <div class="emoji">📷</div>
+          <p>还没有照片哦，快来上传你们的甜蜜瞬间吧！</p>
+        </div>`;
+      return;
+    }
+
+    grid.innerHTML = photos.map((photo, i) => {
+      const imgSrc = photo.src || photo.data;
+      const photoId = typeof photo.id === 'string' ? `'${photo.id}'` : photo.id;
+      return `
+      <div class="photo-item" style="animation: fadeInUp 0.4s ease ${i * 0.08}s both;" onclick="openPreview(${photoId})">
+        <img src="${imgSrc}" alt="${escapeHtml(photo.caption || '我们的照片')}" loading="lazy" />
+        ${photo.caption ? `<div class="photo-caption">${escapeHtml(photo.caption)}</div>` : ''}
+        <button class="photo-delete-btn" onclick="event.stopPropagation(); deletePhoto(${photoId})" title="删除">✕</button>
+      </div>`;
+    }).join('');
+  }
+
+  function handlePhotoUpload(event) {
+    const files = event.target.files;
+    if (!files || files.length === 0) return;
+
+    const photos = loadPhotos();
+    let loaded = 0;
+
+    Array.from(files).forEach(file => {
+      // 限制文件大小 5MB
+      if (file.size > 5 * 1024 * 1024) {
+        alert(`"${file.name}" 超过5MB，已跳过～`);
+        loaded++;
+        return;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        // 压缩图片
+        const img = new Image();
+        img.onload = function() {
+          const canvas = document.createElement('canvas');
+          const MAX = 1200;
+          let w = img.width, h = img.height;
+          if (w > MAX || h > MAX) {
+            if (w > h) { h = Math.round(h * MAX / w); w = MAX; }
+            else { w = Math.round(w * MAX / h); h = MAX; }
+          }
+          canvas.width = w;
+          canvas.height = h;
+          canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+          const compressed = canvas.toDataURL('image/jpeg', 0.8);
+
+          const caption = file.name.replace(/\.[^.]+$/, '');
+          photos.push({
+            id: Date.now() + Math.random(),
+            data: compressed,
+            caption: caption
+          });
+          loaded++;
+          if (loaded === files.length) {
+            savePhotos(photos);
+            renderPhotos();
+          }
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    // 清空 input 以便重复上传同一文件
+    event.target.value = '';
+  }
+
+  function deletePhoto(id) {
+    if (!confirm('确定要删除这张照片吗？')) return;
+    let photos = loadPhotos().filter(p => p.id != id);
+    savePhotos(photos);
+    renderPhotos();
+  }
+
+  function openPreview(id) {
+    const photo = loadPhotos().find(p => p.id == id);
+    if (!photo) return;
+    document.getElementById('previewImg').src = photo.src || photo.data;
+    const captionBar = document.getElementById('previewCaption');
+    captionBar.textContent = photo.caption || '';
+    captionBar.style.display = photo.caption ? 'block' : 'none';
+    document.getElementById('previewOverlay').classList.add('active');
+  }
+
+  function closePreview() {
+    document.getElementById('previewOverlay').classList.remove('active');
+  }
+
+  // ESC 关闭预览
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closePreview();
+  });
+
+  // 初始化照片墙
+  renderPhotos();
+</script>
+
+</body>
+</html>
